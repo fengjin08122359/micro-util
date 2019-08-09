@@ -1,11 +1,8 @@
 import './util/bind'
 import config from './config'
-import changeTitle from './common/changeTitle'
 import convertTree from './common/convertTree'
 import faceIco from './common/faceIco'
-import langPackage from './common/lang'
 import mobileInput from './common/mobileInput'
-import screenCapture from './common/screenCapture'
 import storeImg from './common/storeImg'
 import { httplink, jsonplink } from './http'
 import DataHandle from './util/DataHandle'
@@ -23,9 +20,7 @@ export {
   changeTitle,
   convertTree,
   faceIco,
-  langPackage,
   mobileInput,
-  screenCapture,
   storeImg,
   httplink,
   jsonplink,
