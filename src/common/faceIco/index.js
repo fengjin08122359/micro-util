@@ -1,4 +1,3 @@
-import langPackage from "../lang";
 import face01 from './images/face01.png'
 import face02 from './images/face02.png'
 import face03 from './images/face03.png'
@@ -175,13 +174,13 @@ export default {
     }
     return str
   },
-  repalceToAlert:function (str) {
+  repalceToAlert:function (str, ico) {
     for (var i in imgIco) {
       if (str.indexOf(imgIco[i].ico) != -1) {
-        str = str.replace(new RegExp(imgIco[i].reg, 'gm'), langPackage.langs.notifyMsg.ico)
+        str = str.replace(new RegExp(imgIco[i].reg, 'gm'), ico)
       }
       if (imgIco[i].ico1 && imgIco[i].reg1 && str.indexOf(imgIco[i].ico1) != -1) {
-        str = str.replace(new RegExp(imgIco[i].reg1, 'gm'), langPackage.langs.notifyMsg.ico)
+        str = str.replace(new RegExp(imgIco[i].reg1, 'gm'), ico)
       }
     }
     return str

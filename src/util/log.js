@@ -101,7 +101,15 @@ var logger = {
     var timeStr = new Date().getTime();
     var dateStr = new Date().Format("yyyy-MM-dd hh:mm:ss SS");
     saveTextAs(content, "logger " + startDateStr + " to " + dateStr + ".txt");
-  }
+  },
+  setLevel (level) {
+    logger.level = parseInt(level) || 5
+    storage.set('loggerLevel', logger.level)
+  },
+  setOnly (only) {
+    logger.only = !!only
+    storage.set('loggerOnly', logger.only)
+  },
 }
 let changeObjectToString = (e) => {
   var result = '';
@@ -415,12 +423,10 @@ logger.saveAs = saveAs
 logger.saveTextAs = saveTextAs
 window.logger = {
   setLevel (level) {
-    logger.level = parseInt(level) || 5
-    storage.set('loggerLevel', logger.level)
+    logger.setLevel(level)
   },
   setOnly (only) {
-    logger.only = !!only
-    storage.set('loggerOnly', logger.only)
+    logger.setOnly(level)
   },
 }
 window.onerror = (msg, url, line) => {
