@@ -17,7 +17,6 @@ import EventBus from './util/EventBus';
 
 export {
   config,
-  changeTitle,
   convertTree,
   faceIco,
   mobileInput,
