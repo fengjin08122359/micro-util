@@ -1,0 +1,22 @@
+{
+  "name": "micro-util",
+  "version": "0.0.1",
+  "description": "",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fengjin08122359/micro-util.git"
+  },
+  "author": "mike",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fengjin08122359/micro-util/issues"
+  },
+  "homepage": "https://github.com/fengjin08122359/micro-util#readme",
+  "dependencies": {
+    "swfobject": "^2.2.1"
+  }
+}
