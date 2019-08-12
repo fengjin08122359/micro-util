@@ -1,5 +1,6 @@
 import './util/bind'
 import config from './config'
+import changeTitle from './common/changeTitle'
 import convertTree from './common/convertTree'
 import faceIco from './common/faceIco'
 import mobileInput from './common/mobileInput'
@@ -7,7 +8,7 @@ import storeImg from './common/storeImg'
 import { httplink, jsonplink } from './http'
 import DataHandle from './util/DataHandle'
 import Handle from './util/Handle'
-import keyFrame from './util/key-frame'
+import keyFrame, {websocketFrame, httpFrame} from './util/key-frame'
 import storage from './util/storage'
 import logger from './util/log'
 import websocket from './websocket'
@@ -17,6 +18,7 @@ import EventBus from './util/EventBus';
 
 export {
   config,
+  changeTitle,
   convertTree,
   faceIco,
   mobileInput,
@@ -32,5 +34,7 @@ export {
   register,
   displayHandle,
   displayData,
-  EventBus
+  EventBus,
+  websocketFrame,
+  httpFrame
 }
