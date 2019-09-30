@@ -11,6 +11,10 @@ var _api2 = _interopRequireDefault(_api);
 
 var _keyFrame = require('../util/key-frame');
 
+var _log = require('../util/log');
+
+var _log2 = _interopRequireDefault(_log);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var httplink = exports.httplink = function httplink(name, url, data) {
@@ -28,8 +32,8 @@ var httplink = exports.httplink = function httplink(name, url, data) {
       _keyFrame.httpFrame.push('http-' + name + "-fail,http-fail", data);
       reject(data);
     }, async);
-  }).catch(function () {
-    resolve(data);
+  }).catch(function (error) {
+    _log2.default.error(error);
   });
 };
 
@@ -50,7 +54,7 @@ var jsonplink = exports.jsonplink = function jsonplink(name, url, data) {
       _keyFrame.httpFrame.push('jsonp-' + name + "-fail,jsonp-fail", data);
       reject(data);
     }, async, jsonpCallback, jsonpName);
-  }).catch(function () {
-    resolve(data);
+  }).catch(function (error) {
+    _log2.default.error(error);
   });
 };

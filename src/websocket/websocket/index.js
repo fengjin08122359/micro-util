@@ -66,7 +66,10 @@ var message =  {
   send (message) {
     var w = this
     if (w.websocket != null && w.websocket.readyState == w.websocket.OPEN) {
-        w.websocket.send(JSON.stringify(message))
+      if (typeof message == Object) {
+        message = JSON.stringify(message)
+      }
+      w.websocket.send(message)
     }
   },
   receive (message) {

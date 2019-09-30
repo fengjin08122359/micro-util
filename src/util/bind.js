@@ -1,16 +1,17 @@
 if (!Function.prototype.bind) {
-    Function.prototype.bind = function (oThis) {
+    Function.prototype.bind = function (...rest) {
+        var oThis = rest[0]
         if (typeof this !== 'function') {
             throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
         }
-        var aArgs = Array.prototype.slice.call(arguments, 1),
+        var aArgs = Array.prototype.slice.call(rest, 1),
             fToBind = this,
             fNOP = function () {},
             fBound = function () {
                 return fToBind.apply(this instanceof fNOP && oThis
                     ? this
                     : oThis,
-                aArgs.concat(Array.prototype.slice.call(arguments)));
+                aArgs.concat(Array.prototype.slice.call(rest)));
             };
         fNOP.prototype = this.prototype;
         fBound.prototype = new fNOP();

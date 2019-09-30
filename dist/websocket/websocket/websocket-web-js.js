@@ -4,7 +4,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
-var _swfobject = require("swfobject");
+var _swfobject = require("./swfobject");
 
 var _swfobject2 = _interopRequireDefault(_swfobject);
 

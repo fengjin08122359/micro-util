@@ -1,5 +1,6 @@
 import api from '../util/api'
 import { httpFrame } from '../util/key-frame'
+import logger from '../util/log';
 
 export const httplink = (name, url, data, type='get', async=true) => {
   return new Promise((resolve, reject) => {
@@ -14,8 +15,8 @@ export const httplink = (name, url, data, type='get', async=true) => {
       reject(data)
     }, async)
   })
-  .catch(() => {
-    resolve(data)
+  .catch((error) => {
+    logger.error(error)
   })
 }
 
@@ -33,8 +34,8 @@ export const jsonplink = (name, url, data, type='jsonp', async=true, jsonpCallba
       reject(data)
     }, async, jsonpCallback, jsonpName)
   })
-  .catch(() => {
-    resolve(data)
+  .catch((error) => {
+    logger.error(error)
   })
 }
 

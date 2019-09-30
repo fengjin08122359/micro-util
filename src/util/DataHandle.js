@@ -6,7 +6,7 @@ function isPromise(obj) {
 class DataHandle {
   constructor (name, key) {
     if (name) {
-      install(name + 'Data', this, key)
+      install(name, this, key, 'data')
     }
     // super(item)
     this.beforehandlers = []

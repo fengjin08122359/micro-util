@@ -18,6 +18,17 @@ export default new Handle({
       websocket.test();
     }
   },
+  initSingle (data) {
+    this.initSingleManager()
+    config.wsBegin = data
+    websocket.start('')
+  },
+  initSingleManager() {
+    websocketFrame.addHandler('websocket', 'websocket-login', () => {
+      this.manager = websocket;
+      websocketFrame.push('websocket-set', this.manager)
+    })
+  },
   initManager () {
     websocketFrame.addHandler('websocket', 'websocket-set-success', () => {
       this.manager = websocket;

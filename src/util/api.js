@@ -20,19 +20,19 @@ function baseAjax() {
       xmlhttp = null;  
       return;
   }  
-  var timer = setTimeout( function(){
+  var timer = setTimeout( function(...rest){
     timeout = true;
     xmlhttp.abort();
   }, time );
-  var callback = arguments[3];
-  var failcallback = arguments[4];
-  var type = arguments[5];
+  var callback = rest[3];
+  var failcallback = rest[4];
+  var type = rest[5];
   var contentType = 'application/x-www-form-urlencoded'
   if (type == 'json') {
     contentType = "application/json"
   }
-  var async = arguments[6];
-  xmlhttp.open(arguments[0],arguments[1],async);
+  var async = rest[6];
+  xmlhttp.open(rest[0],rest[1],async);
   xmlhttp.onreadystatechange = function(){
     if( timeout ) {
       if (timer) {
@@ -66,11 +66,11 @@ function baseAjax() {
     }
     return
   }
-  if (arguments[0] == 'GET') {
+  if (rest[0] == 'GET') {
       xmlhttp.setRequestHeader('Content-Type', contentType);
       xmlhttp.send();
   } else {
-    var msgdata = arguments[2];
+    var msgdata = rest[2];
     var str = formatParams(msgdata);
     if (type == 'json') {
       str = JSON.stringify(msgdata)
@@ -133,7 +133,7 @@ export default {
   postJson: function (url, params, success, failure, async) {
     return pullRequest('POST', url, params, success, failure, 'json', async)
   },
-  postFrom: function (url, params, success, failure, async) {
+  postForm: function (url, params, success, failure, async) {
     return pullRequest('POST', url, params, success, failure, 'form', async)
   },
   jsonp: (url, params, success, failure, async, jsonpCallback, jsonpName) => {

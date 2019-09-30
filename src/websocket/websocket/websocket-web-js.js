@@ -1,4 +1,4 @@
-import swfobject from 'swfobject'
+import swfobject from './swfobject'
 // Copyright: Hiroshi Ichikawa <http://gimite.net/en/>
 // License: New BSD License
 // Reference: http://dev.w3.org/html5/websockets/

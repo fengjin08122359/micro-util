@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.httpFrame = exports.websocketFrame = exports.EventBus = exports.displayData = exports.displayHandle = exports.register = exports.websocket = exports.logger = exports.storage = exports.keyFrame = exports.Handle = exports.DataHandle = exports.jsonplink = exports.httplink = exports.storeImg = exports.mobileInput = exports.faceIco = exports.convertTree = exports.changeTitle = exports.config = undefined;
+exports.httpFrame = exports.websocketFrame = exports.EventBus = exports.rgHandle = exports.rgData = exports.displayData = exports.displayHandle = exports.register = exports.websocket = exports.logger = exports.storage = exports.keyFrame = exports.Handle = exports.DataHandle = exports.jsonplink = exports.httplink = exports.validator = exports.storeImg = exports.mobileInput = exports.faceIco = exports.convertTree = exports.changeTitle = exports.config = undefined;
 
 require('./util/bind');
 
@@ -30,6 +30,10 @@ var _mobileInput2 = _interopRequireDefault(_mobileInput);
 var _storeImg = require('./common/storeImg');
 
 var _storeImg2 = _interopRequireDefault(_storeImg);
+
+var _validator = require('./common/validator');
+
+var _validator2 = _interopRequireDefault(_validator);
 
 var _http = require('./http');
 
@@ -73,6 +77,7 @@ exports.convertTree = _convertTree2.default;
 exports.faceIco = _faceIco2.default;
 exports.mobileInput = _mobileInput2.default;
 exports.storeImg = _storeImg2.default;
+exports.validator = _validator2.default;
 exports.httplink = _http.httplink;
 exports.jsonplink = _http.jsonplink;
 exports.DataHandle = _DataHandle2.default;
@@ -84,6 +89,8 @@ exports.websocket = _websocket2.default;
 exports.register = _register2.default;
 exports.displayHandle = _register.displayHandle;
 exports.displayData = _register.displayData;
+exports.rgData = _register.rgData;
+exports.rgHandle = _register.rgHandle;
 exports.EventBus = _EventBus2.default;
 exports.websocketFrame = _keyFrame.websocketFrame;
 exports.httpFrame = _keyFrame.httpFrame;

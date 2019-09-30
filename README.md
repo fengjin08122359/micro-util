@@ -2,7 +2,7 @@
 前端接口分离工具类
 
 # config 配置项  
-##  init 初始化  
+## init 初始化  
 ## set 设置ws前缀(pre)  
 ## setWebsocketUrl 设置ws的后缀地址  
 ## setSWFLocation 设置swf文件地址  

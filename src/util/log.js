@@ -238,9 +238,9 @@ var saveAs = saveAs
             dispatch_all();
           },
           abortable = function (func) {
-            return function () {
+            return function (...rest) {
               if (filesaver.readyState !== filesaver.DONE) {
-                return func.apply(this, arguments);
+                return func.apply(this, rest);
               }
             };
           },
@@ -364,8 +364,8 @@ var saveAs = saveAs
   ));
 
 
-String.prototype.endsWithAny = function () {
-  var strArray = Array.prototype.slice.call(arguments),
+String.prototype.endsWithAny = function (...rest) {
+  var strArray = Array.prototype.slice.call(rest),
     $this = this.toLowerCase().toString();
   for (var i = 0; i < strArray.length; i++) {
     if ($this.indexOf(strArray[i], $this.length - strArray[i].length) !== -1) return true;

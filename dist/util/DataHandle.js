@@ -23,7 +23,7 @@ var DataHandle = function () {
     _classCallCheck(this, DataHandle);
 
     if (name) {
-      (0, _register.install)(name + 'Data', this, key);
+      (0, _register.install)(name, this, key, 'data');
     }
     // super(item)
     this.beforehandlers = [];

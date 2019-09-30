@@ -328,7 +328,11 @@ var saveAs = saveAs
         abortable = function abortable(func) {
       return function () {
         if (filesaver.readyState !== filesaver.DONE) {
-          return func.apply(this, arguments);
+          for (var _len10 = arguments.length, rest = Array(_len10), _key10 = 0; _key10 < _len10; _key10++) {
+            rest[_key10] = arguments[_key10];
+          }
+
+          return func.apply(this, rest);
         }
       };
     },
@@ -441,7 +445,11 @@ var saveAs = saveAs
 }(typeof self !== "undefined" && self || typeof window !== "undefined" && window || undefined.content);
 
 String.prototype.endsWithAny = function () {
-  var strArray = Array.prototype.slice.call(arguments),
+  for (var _len11 = arguments.length, rest = Array(_len11), _key11 = 0; _key11 < _len11; _key11++) {
+    rest[_key11] = arguments[_key11];
+  }
+
+  var strArray = Array.prototype.slice.call(rest),
       $this = this.toLowerCase().toString();
   for (var i = 0; i < strArray.length; i++) {
     if ($this.indexOf(strArray[i], $this.length - strArray[i].length) !== -1) return true;

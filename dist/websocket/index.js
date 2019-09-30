@@ -36,16 +36,29 @@ exports.default = new _Handle2.default({
       _websocket2.default.test();
     }
   },
-  initManager: function initManager() {
+  initSingle: function initSingle(data) {
+    this.initSingleManager();
+    _config2.default.wsBegin = data;
+    _websocket2.default.start('');
+  },
+  initSingleManager: function initSingleManager() {
     var _this = this;
 
-    _keyFrame.websocketFrame.addHandler('websocket', 'websocket-set-success', function () {
+    _keyFrame.websocketFrame.addHandler('websocket', 'websocket-login', function () {
       _this.manager = _websocket2.default;
-      _this.startManager(_this.pk);
       _keyFrame.websocketFrame.push('websocket-set', _this.manager);
     });
+  },
+  initManager: function initManager() {
+    var _this2 = this;
+
+    _keyFrame.websocketFrame.addHandler('websocket', 'websocket-set-success', function () {
+      _this2.manager = _websocket2.default;
+      _this2.startManager(_this2.pk);
+      _keyFrame.websocketFrame.push('websocket-set', _this2.manager);
+    });
     _keyFrame.websocketFrame.addHandler('websockey', 'websocket-set-fail', function () {
-      _keyFrame.websocketFrame.push('websocket-fail', _this.manager);
+      _keyFrame.websocketFrame.push('websocket-fail', _this2.manager);
     });
   },
   closeManager: function closeManager() {
@@ -57,16 +70,16 @@ exports.default = new _Handle2.default({
     this.manager.send(msg);
   },
   startManager: function startManager(data) {
-    var _this2 = this;
+    var _this3 = this;
 
     if (this.manager) {
       this.manager.start(data);
     } else {
       setTimeout(function () {
-        if (_this2.manager) {
-          _this2.manager.start(data);
+        if (_this3.manager) {
+          _this3.manager.start(data);
         } else {
-          _keyFrame.websocketFrame.push('websocket-fail', _this2.manager);
+          _keyFrame.websocketFrame.push('websocket-fail', _this3.manager);
         }
       }, 2000);
     }

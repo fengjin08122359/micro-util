@@ -27,7 +27,7 @@ var Handle = function () {
     _classCallCheck(this, Handle);
 
     if (item.name) {
-      (0, _register.install)(item.name + 'Handle', this, key);
+      (0, _register.install)(item.name, this, key, 'handle');
     }
     this.beforehandlers = [];
     this.afterhandlers = [];

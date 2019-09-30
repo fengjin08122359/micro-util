@@ -7,7 +7,7 @@ function isPromise(obj) {
 class Handle {
   constructor (item, key) {
     if (item.name) {
-      install(item.name + 'Handle', this, key)
+      install(item.name, this, key, 'handle')
     }
     this.beforehandlers = []
     this.afterhandlers = []
