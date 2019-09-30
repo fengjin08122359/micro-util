@@ -1,6 +1,6 @@
 {
   "name": "@mikefeng110808/micro-util",
-  "version": "0.0.19",
+  "version": "0.0.20",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -18,7 +18,8 @@
   },
   "homepage": "https://github.com/fengjin08122359/micro-util#readme",
   "dependencies": {
-    "async-validator": "^3.0.3",
+    "async-validator": "^3.1.0",
+    "braces": "^2.3.1",
     "swfobject": "^2.2.1"
   },
   "devDependencies": {
