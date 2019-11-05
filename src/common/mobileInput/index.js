@@ -145,13 +145,13 @@ var STATUS = {
 var inputCheck = {
   changeStatus: 1,
   changeCheckTimeout: null,
-  init: function (callbacks) {
+  init: function ({fail, success}) {
     var m = this;
     var el = document.documentElement
     width = el.clientWidth;
     height = el.clientHeight;
-    m.failCall = callbacks.fail;
-    m.successCall = callbacks.success;
+    m.failCall = fail;
+    m.successCall = success;
     document.body.addEventListener("scroll", function () {
       if (m.startCheckTimeout) {
         clearTimeout(m.startCheckTimeout);

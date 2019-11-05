@@ -7,7 +7,7 @@ function formatParams(data) {
   }
   return arr.join("&");
 }
-function baseAjax() {
+function baseAjax(...rest) {
   var xmlhttp;
   var time = 60000;
   var timeout = false;

@@ -1,11 +1,12 @@
 {
   "name": "@mikefeng110808/micro-util",
-  "version": "0.0.20",
+  "version": "0.0.22",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "babel src --out-dir dist"
+    "build": "babel src --out-dir dist",
+    "reset":"npm uninstall -g @mikefeng110808/micro-util && npm install -g @mikefeng110808/micro-util"
   },
   "repository": {
     "type": "git",
