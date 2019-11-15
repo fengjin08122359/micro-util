@@ -10,6 +10,9 @@ var message =  {
   init () {
     
   },
+  setConnectLimit (data) {
+    keepalive.setConnectLimit(data)
+  },
   reconnect () {
     var can = this.pk && this.websocket && this.websocket.readyState == this.websocket.CLOSED
     if (can) {

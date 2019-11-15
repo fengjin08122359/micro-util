@@ -29,6 +29,9 @@ var message = {
   websocket: null,
   pk: '',
   init: function init() {},
+  setConnectLimit: function setConnectLimit(data) {
+    _keepalive2.default.setConnectLimit(data);
+  },
   reconnect: function reconnect() {
     var can = this.pk && this.websocket && this.websocket.readyState == this.websocket.CLOSED;
     if (can) {
