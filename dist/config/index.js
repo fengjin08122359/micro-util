@@ -41,9 +41,12 @@ exports.default = {
     this.testUrl = this.wsBegin + 'test' + new Date().getTime();
     window.WEB_SOCKET_SWF_LOCATION = this.swfForWebsocketUrl;
   },
-  set: function set(json) {
-    this.pre = json.pre || this.pre;
-    this.httpUrl = json.httpUrl || this.httpUrl;
+  set: function set(_ref) {
+    var pre = _ref.pre,
+        httpUrl = _ref.httpUrl;
+
+    this.pre = pre || this.pre;
+    this.httpUrl = httpUrl || this.httpUrl;
   },
   setWebsocketUrl: function setWebsocketUrl(pk) {
     this.websocketUrl = this.wsBegin + pk;

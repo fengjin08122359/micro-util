@@ -1,10 +1,16 @@
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
 var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
+var _insertStyle = require("../../util/insertStyle");
+
+var _insertStyle2 = _interopRequireDefault(_insertStyle);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var entries = Object.entries;
 
@@ -43,29 +49,11 @@ var bodyStyle = {
   overflow: 'hidden'
 };
 
-var insertStyle = function insertStyle(cssStr, id) {
-  var nod = document.createElement("style");
-  nod.type = "text/css";
-  nod.id = id || 'theme_style';
-  if (nod.styleSheet) {
-    nod.styleSheet.cssText = cssStr;
-  } else {
-    nod.innerHTML = cssStr;
-  }
-  if (document.getElementById(nod.id)) {
-    if (document.getElementById(nod.id).remove) {
-      document.getElementById(nod.id).remove();
-    } else {
-      document.getElementById(nod.id).removeNode(true);
-    }
-  }
-  document.getElementsByTagName("head")[0].appendChild(nod);
-};
 var newStyle = function newStyle() {
   var id = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'changeStyle';
 
-  var htmlStyleTxt = '';
-  var bodyStyleTxt = '';
+  var htmlStyleTxt = "";
+  var bodyStyleTxt = "";
   var _iteratorNormalCompletion = true;
   var _didIteratorError = false;
   var _iteratorError = undefined;
@@ -76,7 +64,7 @@ var newStyle = function newStyle() {
           key = _step$value[0],
           value = _step$value[1];
 
-      htmlStyleTxt += key + ': ' + value + ';';
+      htmlStyleTxt += key + ": " + value + ";";
     }
   } catch (err) {
     _didIteratorError = true;
@@ -103,7 +91,7 @@ var newStyle = function newStyle() {
           key = _step2$value[0],
           value = _step2$value[1];
 
-      bodyStyleTxt += key + ': ' + value + ';';
+      bodyStyleTxt += key + ": " + value + ";";
     }
   } catch (err) {
     _didIteratorError2 = true;
@@ -120,8 +108,8 @@ var newStyle = function newStyle() {
     }
   }
 
-  var ns = 'html{' + htmlStyleTxt + '}body{' + bodyStyleTxt + '}';
-  insertStyle(ns, id);
+  var ns = "html{" + htmlStyleTxt + "}body{" + bodyStyleTxt + "}";
+  (0, _insertStyle2.default)(ns, id);
 };
 newStyle('mainStyle');
 var scrollTop = function scrollTop(top) {
@@ -204,13 +192,16 @@ var STATUS = {
 var inputCheck = {
   changeStatus: 1,
   changeCheckTimeout: null,
-  init: function init(callbacks) {
+  init: function init(_ref) {
+    var fail = _ref.fail,
+        success = _ref.success;
+
     var m = this;
     var el = document.documentElement;
     width = el.clientWidth;
     height = el.clientHeight;
-    m.failCall = callbacks.fail;
-    m.successCall = callbacks.success;
+    m.failCall = fail;
+    m.successCall = success;
     document.body.addEventListener("scroll", function () {
       if (m.startCheckTimeout) {
         clearTimeout(m.startCheckTimeout);

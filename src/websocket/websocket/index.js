@@ -11,9 +11,11 @@ var message =  {
     
   },
   reconnect () {
-    if (this.pk && this.websocket && this.websocket.readyState == this.websocket.CLOSED) {
+    var can = this.pk && this.websocket && this.websocket.readyState == this.websocket.CLOSED
+    if (can) {
       this.start(this.pk);
     }
+    return can
   },
   test () {
     var url = config.testUrl;

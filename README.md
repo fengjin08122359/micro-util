@@ -74,12 +74,18 @@ new Handle({name:''})
 4. setOnly(boolean) 设置是否只访问当前层级的日志
 5. saveTextAs(content, name, encode='utf-8') 保存为文件
 6. saveAs(blob,name) 保存
+7. getData(type, msg) 获取日志中的数据 类型,字符串
+8. setSaveFile(can) 设置是否在关闭浏览器时导出日志
+9. setUIDsiplay 设置可视化界面是否在初始化时显示
+10. show() 显示可视化界面
+11. hide() 隐藏可视化界面
 ## websocket 
 1. init(data) 先测试后初始化
 2. closeManager() 关闭
 3. sendMsg(msg) 发送消息
 4. isClose() 检测是否关闭
 5. initSingle(data) 开启单个初始化
+6. setConnectLimit(number) 设置断线重连次数 -1 将不进行断线重连
 ## register(displayHandle, displayData) 请不要单独使用
 对象注册机制,实现在DataHandle, Handle中
 1. install 注册对象

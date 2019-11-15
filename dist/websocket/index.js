@@ -36,6 +36,9 @@ exports.default = new _Handle2.default({
       _websocket2.default.test();
     }
   },
+  setConnectLimit: function setConnectLimit(data) {
+    _websocket2.default.setConnectLimit(data);
+  },
   initSingle: function initSingle(data) {
     this.initSingleManager();
     _config2.default.wsBegin = data;

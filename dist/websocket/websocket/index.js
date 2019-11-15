@@ -30,9 +30,11 @@ var message = {
   pk: '',
   init: function init() {},
   reconnect: function reconnect() {
-    if (this.pk && this.websocket && this.websocket.readyState == this.websocket.CLOSED) {
+    var can = this.pk && this.websocket && this.websocket.readyState == this.websocket.CLOSED;
+    if (can) {
       this.start(this.pk);
     }
+    return can;
   },
   test: function test() {
     var url = _config2.default.testUrl;

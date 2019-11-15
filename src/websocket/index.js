@@ -18,6 +18,9 @@ export default new Handle({
       websocket.test();
     }
   },
+  setConnectLimit (data) {
+    websocket.setConnectLimit(data)
+  },
   initSingle (data) {
     this.initSingleManager()
     config.wsBegin = data

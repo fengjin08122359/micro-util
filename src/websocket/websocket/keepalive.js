@@ -12,6 +12,7 @@ export default {
   keepAliveModel: true,
   w: null,
   init () {
+    this.pong = 0;
     if (this.interval) {
       clearInterval(this.interval);
     }
@@ -20,7 +21,11 @@ export default {
       this.check();
     }, this.checkTime * 1000);
   },
+  setConnectLimit (data) {
+    this.connectTime = typeof data == 'number' ? parseInt(data) : -1
+  },
   setPong () {
+    this.connnectNumber = 0;
     this.pong = new Date().getTime();
   },
   check () {
@@ -30,6 +35,11 @@ export default {
     }
     if (websocket && websocket.readyState == websocket.CLOSED) {
       this.endTimeout()
+      return
+    }
+    if (this.pong && new Date().getTime() - this.pong > this.reconnectTime * 1000) {
+      this.endTimeout()
+      return;
     }
   },
   endTimeout () {
@@ -39,21 +49,23 @@ export default {
     if (this.reconnect()) {
       return;
     }
-    websocketFrame.push('websocket-reconnect');
-  },
-  end () {
     if (this.interval) {
       clearInterval(this.interval);
     }
-    if (websocket && websocket.readyState != websocket.CLOSED) {
+    websocketFrame.push('websocket-reconnect');
+  },
+  end () {
+    if (websocket && websocket.readyState == websocket.OPEN) {
       websocket.close();
     }
-    this.connnectNumber++;
   },
   reconnect () {
     var isReconnect = false;
     if (this.connnectNumber <= this.connectTime) {
       isReconnect = true;
+      if (reconnect()) {
+        this.connnectNumber++;
+      }
       websocketFrame.push('websocket-close');
     }
     return isReconnect;

@@ -21,6 +21,7 @@ exports.default = {
   init: function init() {
     var _this = this;
 
+    this.pong = 0;
     if (this.interval) {
       clearInterval(this.interval);
     }
@@ -29,7 +30,11 @@ exports.default = {
       _this.check();
     }, this.checkTime * 1000);
   },
+  setConnectLimit: function setConnectLimit(data) {
+    this.connectTime = typeof data == 'number' ? parseInt(data) : -1;
+  },
   setPong: function setPong() {
+    this.connnectNumber = 0;
     this.pong = new Date().getTime();
   },
   check: function check() {
@@ -39,6 +44,11 @@ exports.default = {
     }
     if (_index.websocket && _index.websocket.readyState == _index.websocket.CLOSED) {
       this.endTimeout();
+      return;
+    }
+    if (this.pong && new Date().getTime() - this.pong > this.reconnectTime * 1000) {
+      this.endTimeout();
+      return;
     }
   },
   endTimeout: function endTimeout() {
@@ -48,23 +58,35 @@ exports.default = {
     if (this.reconnect()) {
       return;
     }
-    _keyFrame.websocketFrame.push('websocket-reconnect');
-  },
-  end: function end() {
     if (this.interval) {
       clearInterval(this.interval);
     }
-    if (_index.websocket && _index.websocket.readyState != _index.websocket.CLOSED) {
+    _keyFrame.websocketFrame.push('websocket-reconnect');
+  },
+  end: function end() {
+    if (_index.websocket && _index.websocket.readyState == _index.websocket.OPEN) {
       _index.websocket.close();
     }
-    this.connnectNumber++;
   },
-  reconnect: function reconnect() {
+  reconnect: function (_reconnect) {
+    function reconnect() {
+      return _reconnect.apply(this, arguments);
+    }
+
+    reconnect.toString = function () {
+      return _reconnect.toString();
+    };
+
+    return reconnect;
+  }(function () {
     var isReconnect = false;
     if (this.connnectNumber <= this.connectTime) {
       isReconnect = true;
+      if (reconnect()) {
+        this.connnectNumber++;
+      }
       _keyFrame.websocketFrame.push('websocket-close');
     }
     return isReconnect;
-  }
+  })
 };
