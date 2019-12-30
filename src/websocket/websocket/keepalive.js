@@ -1,4 +1,4 @@
-import {websocket} from './index';
+import manager from './index';
 import { websocketFrame } from '../../util/key-frame';
 
 export default {
@@ -33,7 +33,7 @@ export default {
       this.endTimeout()
       return;
     }
-    if (websocket && websocket.readyState == websocket.CLOSED) {
+    if (manager.websocket && manager.websocket.readyState == manager.websocket.CLOSED) {
       this.endTimeout()
       return
     }
@@ -55,15 +55,15 @@ export default {
     websocketFrame.push('websocket-reconnect');
   },
   end () {
-    if (websocket && websocket.readyState == websocket.OPEN) {
-      websocket.close();
+    if (manager.websocket && manager.websocket.readyState == manager.websocket.OPEN) {
+      manager.websocket.close();
     }
   },
   reconnect () {
     var isReconnect = false;
     if (this.connnectNumber <= this.connectTime) {
       isReconnect = true;
-      if (reconnect()) {
+      if (manager.reconnect()) {
         this.connnectNumber++;
       }
       websocketFrame.push('websocket-close');

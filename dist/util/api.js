@@ -41,16 +41,31 @@ function baseAjax() {
     contentType = "application/json";
   }
   var async = rest[6];
+  var fail = function fail() {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    if (failcallback) {
+      failcallback();
+      failcallback = null;
+    }
+  };
+  var success = function success(result) {
+    if (timer) {
+      clearTimeout(timer);
+    }
+    callback(result);
+  };
   xmlhttp.open(rest[0], rest[1], async);
+  xmlhttp.onerror = function () {
+    fail();
+  };
+  xmlhttp.onabort = function () {
+    fail();
+  };
   xmlhttp.onreadystatechange = function () {
     if (timeout) {
-      if (timer) {
-        clearTimeout(timer);
-      }
-      if (failcallback) {
-        failcallback();
-        failcallback = null;
-      }
+      fail();
       return;
     }
     if (xmlhttp.readyState == 4 && xmlhttp.status >= 200 && xmlhttp.status < 300) {
@@ -59,20 +74,14 @@ function baseAjax() {
         try {
           result = JSON.parse(result);
         } catch (e) {}
-        callback(result);
+        success(result);
       }
     } else if (xmlhttp.status >= 400) {
-      if (failcallback) {
-        failcallback();
-        failcallback = null;
-      }
+      fail();
     }
   };
   if (!navigator.onLine) {
-    if (failcallback) {
-      failcallback();
-      failcallback = null;
-    }
+    fail();
     return;
   }
   if (rest[0] == 'GET') {

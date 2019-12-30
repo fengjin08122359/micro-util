@@ -71,7 +71,7 @@ var message =  {
   send (message) {
     var w = this
     if (w.websocket != null && w.websocket.readyState == w.websocket.OPEN) {
-      if (typeof message == Object) {
+      if (typeof message == 'object') {
         message = JSON.stringify(message)
       }
       w.websocket.send(message)
@@ -101,5 +101,3 @@ var message =  {
 }
 
 export default message;
-export const websocket = message.websocket;
-export const reconnect = message.reconnect;

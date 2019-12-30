@@ -94,7 +94,7 @@ var message = {
   send: function send(message) {
     var w = this;
     if (w.websocket != null && w.websocket.readyState == w.websocket.OPEN) {
-      if ((typeof message === 'undefined' ? 'undefined' : _typeof(message)) == Object) {
+      if ((typeof message === 'undefined' ? 'undefined' : _typeof(message)) == 'object') {
         message = JSON.stringify(message);
       }
       w.websocket.send(message);

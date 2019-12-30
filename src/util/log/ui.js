@@ -1,7 +1,32 @@
-import insertStyle from "../insertStyle"
 import logger, {levels} from "."
-import { addHandler } from "../bind"
 import drag from './drag'
+const addHandler = (element,type,handler) => { 
+  if(element.addEventListener){  
+      element.addEventListener(type,handler,false)
+  }else if(element.attachEvent){ 
+      element.attachEvent('on' + type ,handler)
+  }else{
+      element['on'+type] = handler
+  }
+}
+const insertStyle =  (cssStr, id) => {
+  var nod = document.createElement("style");  
+  nod.type="text/css";
+  nod.id = id || 'theme_style'
+  if(nod.styleSheet){         
+    nod.styleSheet.cssText = cssStr;  
+  } else {  
+    nod.innerHTML = cssStr;       
+  }
+  if (document.getElementById(nod.id)) {
+    if (document.getElementById(nod.id).remove) {
+      document.getElementById(nod.id).remove()
+    } else {
+      document.getElementById(nod.id).removeNode(true)
+    }
+  }
+  document.getElementsByTagName("head")[0].appendChild(nod); 
+};
 const CSSID = 'nclient-util-log-css'
 const LOG_CLASS = 'nclient-util-log'
 const LOG_ZOOM_CLASS = 'nclient-util-log-zoom'

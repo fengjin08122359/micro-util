@@ -1,6 +1,6 @@
 {
   "name": "@mikefeng110808/micro-util",
-  "version": "0.0.26",
+  "version": "0.0.32",
   "description": "",
   "main": "dist/index.js",
   "scripts": {

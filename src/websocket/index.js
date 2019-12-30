@@ -48,7 +48,9 @@ export default new Handle({
     }
   },
   sendMsg (msg) {
-    this.manager.send(msg)
+    if (this.manager) {
+      this.manager.send(msg)
+    }
   },
   startManager (data) {
     if (this.manager) {

@@ -68,25 +68,15 @@ exports.default = {
       _index.websocket.close();
     }
   },
-  reconnect: function (_reconnect) {
-    function reconnect() {
-      return _reconnect.apply(this, arguments);
-    }
-
-    reconnect.toString = function () {
-      return _reconnect.toString();
-    };
-
-    return reconnect;
-  }(function () {
+  reconnect: function reconnect() {
     var isReconnect = false;
     if (this.connnectNumber <= this.connectTime) {
       isReconnect = true;
-      if (reconnect()) {
+      if ((0, _index.reconnect)()) {
         this.connnectNumber++;
       }
       _keyFrame.websocketFrame.push('websocket-close');
     }
     return isReconnect;
-  })
+  }
 };
