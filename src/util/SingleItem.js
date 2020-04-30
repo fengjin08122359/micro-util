@@ -128,7 +128,7 @@ class SingleItem extends DataHandle {
       return createElement(
         'component-single-item',   // 标签名称
         {
-          ...context,
+          context,
           data: this
         },
         [vueTarget.$slots.default]

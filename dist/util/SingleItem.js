@@ -11,6 +11,10 @@ var _DataHandle2 = require('./DataHandle');
 
 var _DataHandle3 = _interopRequireDefault(_DataHandle2);
 
+var _validator = require('../common/validator');
+
+var _validator2 = _interopRequireDefault(_validator);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -41,6 +45,8 @@ var SingleItem = function (_DataHandle) {
     _this.value = typeof data.value == 'undefined' ? '' : data.value; // 值
     _this.children = data.children || []; //子节点
     _this.rawData = data; //原始数据
+    _this.rawComponents = ['component-single-item'];
+    _this.canRender = false;
     return _this;
   }
 
@@ -112,7 +118,7 @@ var SingleItem = function (_DataHandle) {
           };
         }
         if (result.success && _this2.valid.length > 0) {
-          validator({
+          (0, _validator2.default)({
             value: _this2.getValue()
           }, {
             value: _this2.valid
@@ -178,6 +184,24 @@ var SingleItem = function (_DataHandle) {
       return this.children.map(function (item) {
         return item.getAllItems();
       }).concat(this);
+    }
+  }, {
+    key: 'getCanRender',
+    value: function getCanRender() {
+      return this.canRender || this.rawComponents.length == 0;
+    }
+  }, {
+    key: 'render',
+    value: function render(createElement, vueTarget, context) {
+      if (!this.getCanRender()) {
+        return createElement();
+      } else {
+        return createElement('component-single-item', // 标签名称
+        {
+          context: context,
+          data: this
+        }, [vueTarget.$slots.default]);
+      }
     }
   }]);
 
