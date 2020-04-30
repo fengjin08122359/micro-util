@@ -3,7 +3,6 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.reconnect = exports.websocket = undefined;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -124,5 +123,3 @@ var message = {
 };
 
 exports.default = message;
-var websocket = exports.websocket = message.websocket;
-var reconnect = exports.reconnect = message.reconnect;

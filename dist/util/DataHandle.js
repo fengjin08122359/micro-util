@@ -16,6 +16,21 @@ function isPromise(obj) {
   return !!obj && ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object' || typeof obj === 'function') && typeof obj.then === 'function';
 }
 
+function inheritedPropertyNames(obj) {
+  var props = {};
+  while (obj) {
+    if (obj.constructor == DataHandle) {
+      obj = null;
+      break;
+    }
+    Object.getOwnPropertyNames(obj).forEach(function (p) {
+      props[p] = true;
+    });
+    obj = Object.getPrototypeOf(obj);
+  }
+  return Object.getOwnPropertyNames(props);
+}
+
 var DataHandle = function () {
   function DataHandle(name, key) {
     var _this = this;
@@ -28,7 +43,8 @@ var DataHandle = function () {
     // super(item)
     this.beforehandlers = [];
     this.afterhandlers = [];
-    var ownKeys = Object.getOwnPropertyNames(Object.getPrototypeOf(this));
+    var ownKeys = inheritedPropertyNames(this);
+    // var ownKeys = Object.getOwnPropertyNames(Object.getPrototypeOf(this))
     ownKeys.forEach(function (key) {
       var value = _this[key];
       if (typeof value == "function") {

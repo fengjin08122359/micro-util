@@ -70,7 +70,9 @@ exports.default = new _Handle2.default({
     }
   },
   sendMsg: function sendMsg(msg) {
-    this.manager.send(msg);
+    if (this.manager) {
+      this.manager.send(msg);
+    }
   },
   startManager: function startManager(data) {
     var _this3 = this;

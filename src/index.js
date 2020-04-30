@@ -7,6 +7,7 @@ import mobileInput from './common/mobileInput'
 import storeImg from './common/storeImg'
 import validator from './common/validator'
 import { httplink, jsonplink } from './http'
+import convertVuex from './util/convertVuex'
 import DataHandle from './util/DataHandle'
 import Handle from './util/Handle'
 import keyFrame, {websocketFrame, httpFrame} from './util/key-frame'
@@ -15,6 +16,7 @@ import logger from './util/log'
 import websocket from './websocket'
 import register, {displayHandle, displayData, rgData, rgHandle} from './util/register'
 import EventBus from './util/EventBus';
+import {SingleItem} from './util/SingleItem';
 
 export {
   config,
@@ -39,5 +41,7 @@ export {
   rgHandle,
   EventBus,
   websocketFrame,
-  httpFrame
+  httpFrame,
+  convertVuex,
+  SingleItem
 }

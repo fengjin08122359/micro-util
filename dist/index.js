@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.httpFrame = exports.websocketFrame = exports.EventBus = exports.rgHandle = exports.rgData = exports.displayData = exports.displayHandle = exports.register = exports.websocket = exports.logger = exports.storage = exports.keyFrame = exports.Handle = exports.DataHandle = exports.jsonplink = exports.httplink = exports.validator = exports.storeImg = exports.mobileInput = exports.faceIco = exports.convertTree = exports.changeTitle = exports.config = undefined;
+exports.convertVuex = exports.httpFrame = exports.websocketFrame = exports.EventBus = exports.rgHandle = exports.rgData = exports.displayData = exports.displayHandle = exports.register = exports.websocket = exports.logger = exports.storage = exports.keyFrame = exports.Handle = exports.DataHandle = exports.jsonplink = exports.httplink = exports.validator = exports.storeImg = exports.mobileInput = exports.faceIco = exports.convertTree = exports.changeTitle = exports.config = undefined;
 
 require('./util/bind');
 
@@ -36,6 +36,10 @@ var _validator = require('./common/validator');
 var _validator2 = _interopRequireDefault(_validator);
 
 var _http = require('./http');
+
+var _convertVuex = require('./util/convertVuex');
+
+var _convertVuex2 = _interopRequireDefault(_convertVuex);
 
 var _DataHandle = require('./util/DataHandle');
 
@@ -94,3 +98,4 @@ exports.rgHandle = _register.rgHandle;
 exports.EventBus = _EventBus2.default;
 exports.websocketFrame = _keyFrame.websocketFrame;
 exports.httpFrame = _keyFrame.httpFrame;
+exports.convertVuex = _convertVuex2.default;

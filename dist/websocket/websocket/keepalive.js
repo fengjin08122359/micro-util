@@ -6,7 +6,11 @@ Object.defineProperty(exports, "__esModule", {
 
 var _index = require('./index');
 
+var _index2 = _interopRequireDefault(_index);
+
 var _keyFrame = require('../../util/key-frame');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = {
   pong: 0,
@@ -42,7 +46,7 @@ exports.default = {
       this.endTimeout();
       return;
     }
-    if (_index.websocket && _index.websocket.readyState == _index.websocket.CLOSED) {
+    if (_index2.default.websocket && _index2.default.websocket.readyState == _index2.default.websocket.CLOSED) {
       this.endTimeout();
       return;
     }
@@ -64,15 +68,15 @@ exports.default = {
     _keyFrame.websocketFrame.push('websocket-reconnect');
   },
   end: function end() {
-    if (_index.websocket && _index.websocket.readyState == _index.websocket.OPEN) {
-      _index.websocket.close();
+    if (_index2.default.websocket && _index2.default.websocket.readyState == _index2.default.websocket.OPEN) {
+      _index2.default.websocket.close();
     }
   },
   reconnect: function reconnect() {
     var isReconnect = false;
     if (this.connnectNumber <= this.connectTime) {
       isReconnect = true;
-      if ((0, _index.reconnect)()) {
+      if (_index2.default.reconnect()) {
         this.connnectNumber++;
       }
       _keyFrame.websocketFrame.push('websocket-close');

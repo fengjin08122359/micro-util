@@ -3,6 +3,22 @@ import { install } from "./register";
 function isPromise(obj) {
   return !!obj && (typeof obj === 'object' || typeof obj === 'function') && typeof obj.then === 'function';
 }
+
+function inheritedPropertyNames(obj) {
+  var props = {};
+  while(obj) {
+    if (obj.constructor == DataHandle) {
+      obj = null
+      break;
+    }
+    Object.getOwnPropertyNames(obj).forEach(function(p) {
+      props[p] = true;
+    });
+    obj = Object.getPrototypeOf(obj);
+  }
+  return Object.getOwnPropertyNames(props);
+}
+
 class DataHandle {
   constructor (name, key) {
     if (name) {
@@ -11,7 +27,8 @@ class DataHandle {
     // super(item)
     this.beforehandlers = []
     this.afterhandlers = []
-    var ownKeys = Object.getOwnPropertyNames(Object.getPrototypeOf(this))
+    var ownKeys = inheritedPropertyNames(this)
+    // var ownKeys = Object.getOwnPropertyNames(Object.getPrototypeOf(this))
     ownKeys.forEach(key => {
       var value = this[key]
       if (typeof value == "function") {
