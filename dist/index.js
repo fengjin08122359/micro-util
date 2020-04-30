@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.convertVuex = exports.httpFrame = exports.websocketFrame = exports.EventBus = exports.rgHandle = exports.rgData = exports.displayData = exports.displayHandle = exports.register = exports.websocket = exports.logger = exports.storage = exports.keyFrame = exports.Handle = exports.DataHandle = exports.jsonplink = exports.httplink = exports.validator = exports.storeImg = exports.mobileInput = exports.faceIco = exports.convertTree = exports.changeTitle = exports.config = undefined;
+exports.SingleItem = exports.convertVuex = exports.httpFrame = exports.websocketFrame = exports.EventBus = exports.rgHandle = exports.rgData = exports.displayData = exports.displayHandle = exports.register = exports.websocket = exports.logger = exports.storage = exports.keyFrame = exports.Handle = exports.DataHandle = exports.jsonplink = exports.httplink = exports.validator = exports.storeImg = exports.mobileInput = exports.faceIco = exports.convertTree = exports.changeTitle = exports.config = undefined;
 
 require('./util/bind');
 
@@ -73,6 +73,8 @@ var _EventBus = require('./util/EventBus');
 
 var _EventBus2 = _interopRequireDefault(_EventBus);
 
+var _SingleItem = require('./util/SingleItem');
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.config = _config2.default;
@@ -99,3 +101,4 @@ exports.EventBus = _EventBus2.default;
 exports.websocketFrame = _keyFrame.websocketFrame;
 exports.httpFrame = _keyFrame.httpFrame;
 exports.convertVuex = _convertVuex2.default;
+exports.SingleItem = _SingleItem.SingleItem;

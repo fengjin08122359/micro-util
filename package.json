@@ -1,12 +1,12 @@
 {
   "name": "@mikefeng110808/micro-util",
-  "version": "0.0.39",
+  "version": "0.0.42",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "babel src --out-dir dist",
-    "reset":"npm uninstall -g @mikefeng110808/micro-util && npm install -g @mikefeng110808/micro-util"
+    "reset": "npm uninstall -g @mikefeng110808/micro-util && npm install -g @mikefeng110808/micro-util"
   },
   "repository": {
     "type": "git",
@@ -19,9 +19,8 @@
   },
   "homepage": "https://github.com/fengjin08122359/micro-util#readme",
   "dependencies": {
-    "async-validator": "^3.1.0",
-    "braces": "^2.3.1",
-    "swfobject": "^2.2.1"
+    "async-validator": "^3.2.4",
+    "braces": "^3.0.2"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",

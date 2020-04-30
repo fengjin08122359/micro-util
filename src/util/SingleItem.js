@@ -1,4 +1,5 @@
 import DataHandle from './DataHandle';
+import validator from '../common/validator';
 
 class SingleItem extends DataHandle {
   constructor(data) {
@@ -15,7 +16,10 @@ class SingleItem extends DataHandle {
     this.valid = data.valid || []//验证信息
     this.type = data.type || 'input' // 类型
     this.value = typeof data.value == 'undefined' ? '' : data.value // 值
+    this.children = data.children || []//子节点
     this.rawData = data//原始数据
+    this.rawComponents = ['component-single-item']
+    this.canRender = false
   }
   dataFind(data) {
     var result = null
@@ -26,7 +30,7 @@ class SingleItem extends DataHandle {
     })
     return result
   }
-  reset(value) {
+  save(value) {
     var oldValue = this.value
     this.value = value
     if (oldValue != this.value) {
@@ -88,6 +92,48 @@ class SingleItem extends DataHandle {
   setDisabled(flag) {
     this.disabled = flag
     return this.disabled
+  }
+  getKeyValue () {
+    return {
+      key: this.getKey(),
+      value: this.getValue(),
+      children: this.children.map(item => {
+        return item.getKeyValue();
+      })
+    }
+  }
+  setKeyValue ({key = '', value = '', children = []}) {
+    if (this.getKey() != '' && this.getKey() == key) {
+      this.save(value)
+      children.forEach(item => {
+        var target = this.children.find(target => item.key == target.getKey())
+        if (target) {
+          target.setKeyValue(item)
+        }
+      })
+    }
+  }
+  getAllItems() {
+    return this.children.map(item => {
+      return item.getAllItems()
+    }).concat(this)
+  }
+  getCanRender () {
+    return this.canRender || this.rawComponents.length == 0
+  }
+  render(createElement, vueTarget, context) {
+    if (!this.getCanRender()) {
+      return createElement()
+    } else {
+      return createElement(
+        'component-single-item',   // 标签名称
+        {
+          ...context,
+          data: this
+        },
+        [vueTarget.$slots.default]
+      )
+    }
   }
 }
 
